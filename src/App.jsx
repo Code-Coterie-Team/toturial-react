@@ -1,45 +1,27 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Home from "./pages/home";
 import About from "./pages/about";
-import Contact from "./pages/Contact";
 import NoPage from "./pages/NoPage";
-import Products from "./pages/Products";
-import Location from "./pages/Location";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/about",
-    children: [
-      {
-        path: "location",
-        element: <Location />,
-      },
-      {
-        index: true,
-        element: <About />,
-      },
-    ],
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
-  },
-  {
-    path: "/products",
-    element: <Products />,
-  },
-  {
-    path: "*",
-    element: <NoPage />,
-  },
-]);
+import { useEffect } from "react";
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  const navigate = useNavigate();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      navigate("/about");
+    }
+  }, []);
+
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="*" element={<NoPage />} />
+    </Routes>
+  );
 };
 
 export default App;
