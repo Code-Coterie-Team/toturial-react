@@ -1,13 +1,6 @@
-import { Link } from "react-router-dom";
-
-const About = () => {
-  return (
-    <div>
-      <h1>About</h1>
-
-      <Link to="/">return home</Link>
-    </div>
-  );
+// eslint-disable-next-line no-unused-vars
+const sum = (a:number, b:number) => {
+  return Number(a) + Number(b);
 };
 
-export default About;
+sum(, "dfd"); // NaN
